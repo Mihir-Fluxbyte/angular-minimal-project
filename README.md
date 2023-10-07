@@ -32,8 +32,35 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ng new my-project --minimal --defaults
 ```
 
-## Add eslint
+## Add eslint and prettier
 
 ```sh
 ng add @angular-eslint/schematics
 ```
+
+```sh
+npm install prettier-eslint eslint-config-prettier eslint-plugin-prettier --save-dev
+```
+
+- configure eslint as per .eslintrc.json
+
+- configure vs code settings
+
+  ```json
+  {
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+      "editor.formatOnSave": false
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+      "editor.formatOnSave": false
+    },
+  }
+  ```
