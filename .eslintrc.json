@@ -36,7 +36,8 @@
           "warn",
           {
             "singleQuote": true,
-            "semi": true
+            "semi": true,
+            "endOfLine": "auto"
           }
         ]
       }
@@ -50,7 +51,9 @@
         "plugin:@angular-eslint/template/recommended",
         "plugin:@angular-eslint/template/accessibility"
       ],
-      "rules": {}
+      "rules": {
+        "prettier/prettier": ["error", {"endOfLine": "auto"}]
+      }
     },
     // NOTE: WE ARE NOT APPLYING @ANGULAR-ESLINT/TEMPLATE IN THIS OVERRIDE, ONLY PRETTIER
     {
@@ -59,7 +62,7 @@
       "extends": ["plugin:prettier/recommended"],
       "rules": {
         // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
-        "prettier/prettier": ["error", { "parser": "angular" }]
+        "prettier/prettier": ["error", { "parser": "angular", "endOfLine": "auto" }]
       }
     }
   ]
