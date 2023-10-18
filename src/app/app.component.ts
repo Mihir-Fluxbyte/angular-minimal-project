@@ -4,41 +4,87 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center" class="content">
-      <h1>Welcome to {{ title }}!</h1>
-      <span style="display: block">{{ title }} app is running!</span>
-      <img
-        width="300"
-        alt="Angular Logo"
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-      />
-    </div>
-    <h2>Here are some links to help you start:</h2>
-    <ul>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://angular.io/tutorial"
-            >Tour of Heroes</a
-          >
-        </h2>
-      </li>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://angular.io/cli"
-            >CLI Documentation</a
-          >
-        </h2>
-      </li>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://blog.angular.io/"
-            >Angular blog</a
-          >
-        </h2>
-      </li>
-    </ul>
+    <div class="text-3xl font-bold text-slate-500">Form elements</div>
+    <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div class="form-element transition-all">
+        <label for="text">text</label>
+        <input name="text" type="text" />
+      </div>
+      <div class="form-element">
+        <label for="number">number</label>
+        <input name="number" type="number" />
+      </div>
+      <div class="form-element">
+        <label for="email">email</label>
+        <input name="email" type="email" />
+      </div>
+      <div class="form-element">
+        <label for="password">password</label>
+        <input name="password" type="password" />
+      </div>
+      <div class="form-element">
+        <label for="search">search</label>
+        <input name="search" type="search" />
+      </div>
+      <div class="form-element">
+        <label for="time">time</label>
+        <input name="time" type="time" />
+      </div>
+      <div class="form-element">
+        <label for="month">month</label>
+        <input name="month" type="month" />
+      </div>
+      <div class="form-element">
+        <label for="checkbox">checkbox</label>
+        <input name="checkbox" type="checkbox" />
+      </div>
+      <div class="form-element">
+        <label for="tel">tel</label>
+        <input name="tel" type="tel" />
+      </div>
+      <div class="form-element">
+        <label for="radio">radio</label>
+        <input name="radio" type="radio" />
+      </div>
+      <div class="form-element">
+        <label for="select">select</label>
+        <select name="select">
+          <option value="option 1">Option 1</option>
+          <option value="option 2">Option 2</option>
+          <option value="option 3">Option 3</option>
+        </select>
+      </div>
+      <div class="form-element">
+        <label for="multiselect">multiselect</label>
+        <select name="multiselect" multiple="true">
+          <option value="option 1">Option 1</option>
+          <option value="option 2">Option 2</option>
+          <option value="option 3">Option 3</option>
+          <option value="option 4">Option 4</option>
+          <option value="option 5">Option 5</option>
+          <option value="option 6">Option 6</option>
+        </select>
+      </div>
+      <div class="form-element">
+        <label for="textarea">textarea</label>
+        <textarea name="textarea"></textarea>
+      </div>
+    </form>
   `,
-  styles: [],
+  styles: [
+    `
+      .form-element {
+        display: flex;
+        flex-direction: column;
+        margin-block: 10px;
+        padding-inline: 10px;
+      }
+
+      .form-element label {
+        font-size: 14px;
+      }
+    `,
+  ],
 })
 export class AppComponent {
   title = 'app-test';

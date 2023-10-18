@@ -64,3 +64,15 @@ npm install prettier-eslint eslint-config-prettier eslint-plugin-prettier --save
     },
   }
   ```
+
+- Configure [Tailwind css](https://tailwindcss.com/docs/guides/angular)
+
+  ```sh
+  npm install -D tailwindcss postcss autoprefixer
+  npx tailwindcss init
+  ```
+
+  - <https://tailwindcss.com/docs/typography-plugin>
+  - <https://github.com/tailwindlabs/tailwindcss-container-queries>
+  - <https://github.com/tailwindlabs/tailwindcss-aspect-ratio>
+  - <https://github.com/tailwindlabs/tailwindcss-forms>
