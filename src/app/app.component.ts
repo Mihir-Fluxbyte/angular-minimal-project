@@ -1,45 +1,77 @@
-import { Component } from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center" class="content">
-      <h1>Welcome to {{ title }}!</h1>
-      <span style="display: block">{{ title }} app is running!</span>
-      <img
-        width="300"
-        alt="Angular Logo"
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-      />
-    </div>
-    <h2>Here are some links to help you start:</h2>
-    <ul>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://angular.io/tutorial"
-            >Tour of Heroes</a
-          >
-        </h2>
-      </li>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://angular.io/cli"
-            >CLI Documentation</a
-          >
-        </h2>
-      </li>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://blog.angular.io/"
-            >Angular blog</a
-          >
-        </h2>
-      </li>
-    </ul>
+    AppComponent: {{ title }} | list length: {{ list.length }}
+    <br />
+    Testomponent: <app-test [title]="title" [list]="list"></app-test>
+    <br />
+    <button (click)="add()">add</button>
+    <button (click)="reset()">reset</button>
   `,
   styles: [],
 })
-export class AppComponent {
+export class AppComponent
+  implements
+    OnInit,
+    OnChanges,
+    DoCheck,
+    OnDestroy,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit,
+    AfterViewChecked
+{
   title = 'app-test';
+  list = ['a', 'b'];
+
+  add() {
+    this.list.push('c');
+  }
+
+  reset() {
+    this.list = ['a', 'b'];
+  }
+
+  constructor() {
+    console.log('constructor');
+  }
+
+  ngOnInit(): void {
+    console.log('ngOnInit');
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges');
+  }
+  ngDoCheck(): void {
+    console.log('ngDoCheck');
+  }
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy');
+  }
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit');
+  }
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked');
+  }
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
+  }
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked');
+  }
 }
