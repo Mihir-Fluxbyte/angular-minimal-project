@@ -1,45 +1,54 @@
 import { Component } from '@angular/core';
+import { ApiService } from './api.service';
+import { BehaviorSubject, delay, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center" class="content">
-      <h1>Welcome to {{ title }}!</h1>
-      <span style="display: block">{{ title }} app is running!</span>
-      <img
-        width="300"
-        alt="Angular Logo"
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-      />
+    <div>
+      A1 [text + count] with both parameter: {{ a1.result$ | async }}
+      <button (click)="a1.refetch(bs.getValue(), 'REFETCHED-')">Refetch</button>
     </div>
-    <h2>Here are some links to help you start:</h2>
-    <ul>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://angular.io/tutorial"
-            >Tour of Heroes</a
-          >
-        </h2>
-      </li>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://angular.io/cli"
-            >CLI Documentation</a
-          >
-        </h2>
-      </li>
-      <li>
-        <h2>
-          <a target="_blank" rel="noopener" href="https://blog.angular.io/"
-            >Angular blog</a
-          >
-        </h2>
-      </li>
-    </ul>
+    <div>A2 [delayed count]: {{ a2.result$ | async }}</div>
+    <div>
+      A3 [delayed count + number with parameter number]:
+      {{ a3.result$ | async }}
+      <button (click)="a3.refetch(Math.random())">Refetch</button>
+    </div>
+    <div>A4 [interval random]: {{ a4.result$ | async }}</div>
+
+    <div>
+      count: {{ bs | async }}
+      <button (click)="bs.next(bs.getValue() + 1)">Increment</button>
+    </div>
   `,
   styles: [],
 })
 export class AppComponent {
   title = 'app-test';
+  bs = new BehaviorSubject(1);
+  Math = Math;
+  a1 = this.apiService.API(
+    (count: number, pre: string) => of(pre + count).pipe(delay(100)),
+    {
+      initialParams: [1, 'INITIAL-'],
+    },
+  );
+  a2 = this.apiService.API(this.bs.pipe(delay(100)), {});
+  a3 = this.apiService.API(
+    (v: number) =>
+      this.bs.pipe(
+        map((c) => c + v),
+        delay(100),
+      ),
+    {
+      initialParams: [0],
+    },
+  );
+  a4 = this.apiService.API(() => of(this.Math.random()), {
+    initialParams: [],
+    pollInterval: 1000,
+  });
+
+  constructor(public apiService: ApiService) {}
 }
